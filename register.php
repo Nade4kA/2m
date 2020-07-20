@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $first_name = test_input($_POST["first_name"]);
     // check if name only contains letters
-    if (!preg_match("/^[a-zA-Zа-яА-Я]*$/iu/",$first_name)) {
+    if (!preg_match("/^[a-zA-Zа-яА-Я]+$/iu",$first_name)) {
       $first_nameErr = "Только буквы";
     }
   }
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else {
     $last_name = test_input($_POST["last_name"]);
     // check if name only contains letters
-    if (!preg_match("/^[a-zA-Zа-яА-Я]*$/iu/",$last_name)) {
+    if (!preg_match("/^[a-zA-Zа-яА-Я]+$/iu",$last_name)) {
       $last_nameErr = "Только буквы";
     }
   }
@@ -108,8 +108,8 @@ if (isset($_POST) and $_SERVER["REQUEST_METHOD"]=="POST" ) {
     
     <?php
     $link = "<a href='http://voila.local/verified.php?u_code=$u_code'>Confirm</a>";
-    // $link = "voila.local/register.php?u_code=".$u_code."";
-    mail($_POST['email'],'Registration', $link);
+    $header = "voila.local/register.php?u_code=".$u_code."";
+    mail($_POST['email'],'Registration', $link, $header);
   }
   }
   
